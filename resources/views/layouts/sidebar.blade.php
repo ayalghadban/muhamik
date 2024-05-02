@@ -105,7 +105,7 @@
                     </ul>
                 </li>
 
-               
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
@@ -131,7 +131,7 @@
                 </li>
 
                 <li class="menu-title" data-key="t-layouts">Layouts</li>
-                
+
                 <li>
                     <a href="layouts-horizontal">
                         <i class="bx bx-layout icon nav-icon"></i>

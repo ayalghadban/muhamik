@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,4 +39,32 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+
+    public function loginAdmin(Request $request)
+    {
+        $data = [];
+        $credentials = $request->only(['email', 'password']);
+        if(Auth::guard('admin')->attempt($credentials))
+        {
+            $admin = Auth::guard('admin')->user();
+
+          $token = $admin->createToken('MyApp', ['admin'])->plainTextToken;
+
+            if (!$token)
+                return false;
+
+            $admin->role_type = "admin";
+
+            $data['token'] = $token;
+
+            $data['user'] = $admin;
+
+            return view('index');
+        }
+
+        return view('auth.login');
+    }
+
 }

@@ -6,7 +6,6 @@
     Login
 @endsection
 @section('body')
-
     <body>
     @endsection
     @section('content')
@@ -29,13 +28,11 @@
                                                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
-                                                    value="{{ old('email') }}" required autocomplete="email" autofocus
-                                                    value="admin@themesbrand.com">
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                @if($errors->has('email'))
+    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+@endif
+
                                             </div>
 
                                             <div class="mb-3">
@@ -45,7 +42,7 @@
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         placeholder="Enter password" id="password-input" name="password"
-                                                        required autocomplete="current-password" value="12345678">
+                                                        required autocomplete="current-password" value="">
                                                     <button type="button"
                                                         class="btn btn-link position-absolute h-100 end-0 top-0"
                                                         id="password-addon">
@@ -57,6 +54,9 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                                @if($errors->has('password'))
+    <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+@endif
                                             </div>
                                             <div class="mt-4">
                                                 <button class="btn btn-primary w-100" type="submit">Sign

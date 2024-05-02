@@ -10,7 +10,6 @@
     Dashboard
 @endsection
 @section('body')
-
     <body>
     @endsection
     @section('content')
@@ -1059,4 +1058,7 @@
         <script src="{{ URL::asset('build/js/pages/dashboard.init.js') }}"></script>
         <!-- App js -->
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
+        <script>
+            window.history.pushState({}, document.title, "/");
+        </script>
     @endsection
